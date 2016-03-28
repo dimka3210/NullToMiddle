@@ -1,0 +1,15 @@
+main_homepage:
+    path:     /
+    defaults: { _controller: MainBundle:Default:index }
+
+index:
+    path:     /about
+    defaults: { _controller: MainBundle:About:index }
+
+hello_with_name:
+    path:     /about/hello/{name}
+    defaults: { _controller: MainBundle:About:hello }
+
+hello:
+    path:     /about/hello
+    defaults: { _controller: MainBundle:About:hello }
