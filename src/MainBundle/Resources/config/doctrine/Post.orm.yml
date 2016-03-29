@@ -1,0 +1,21 @@
+MainBundle\Entity\Post:
+    type: entity
+    table: null
+    repositoryClass: MainBundle\Repository\PostRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        text:
+            type: text
+        dateCreated:
+            type: datetime
+            column: date_created
+    lifecycleCallbacks:
+        prePersist: [beforePersist]

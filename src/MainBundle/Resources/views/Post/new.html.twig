@@ -1,0 +1,33 @@
+{% extends "MainBundle:base.html.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{ form_start(form, {attr: {'class': 'form-horizontal'}}) }}
+            <fieldset>
+                <div class="form-group">
+                    <label for="inputTitle" class="col-lg-2 control-label">{{ form_label(form.title) }}</label>
+                    <div class="col-lg-10">
+                        {{ form_widget(form.title, {attr: {'class': 'form-control', 'id': 'inputTitle'}}) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="textArea" class="col-lg-2 control-label">{{ form_label(form.text) }}</label>
+                    <div class="col-lg-10">
+                        {{ form_widget(form.text, {attr: {'class': 'form-control', 'id': 'textArea'}}) }}
+                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                        {{ form_errors(form.title) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
