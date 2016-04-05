@@ -2,8 +2,13 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+$_SERVER['clean_buffer'] = false;
 
-function d2 ($var, $exit = true) {
+function d2 ($var, $exit = true, $clear = true) {
+    if (!$_SERVER['clean_buffer'] && $clear) {
+        ob_clean();
+        $_SERVER['clean_buffer'] = true;
+    }
     echo '<pre>';
     var_dump($var);
     echo '</pre>';
@@ -12,14 +17,20 @@ function d2 ($var, $exit = true) {
     }
 }
 
-function dd() {
+function dd($exit = true) {
     $debug = debug_backtrace();
     echo '<pre>';
     for ($i = 0; $i < count($debug); $i++) {
-        $row = $debug[0];
+        $row = $debug[$i];
+        if (!isset($row['file']) && !isset($row['line'])) {
+            continue;
+        }
         echo $row['file'] . ':' . $row['line'] . PHP_EOL;
     }
     echo '</pre>';
+    if ($exit) {
+        exit;
+    }
 }
 
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
