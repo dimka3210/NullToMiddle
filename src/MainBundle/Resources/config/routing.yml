@@ -21,3 +21,10 @@ post_new:
 post_index:
     path:     /post
     defaults: { _controller: MainBundle:Post:index }
+
+login:
+    path:     /login
+    defaults: { _controller: MainBundle:Default:login }
+
+logout:
+    path:     /logout
