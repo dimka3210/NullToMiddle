@@ -1,6 +1,19 @@
-{% extends 'MainBundle:base.html.twig' %}
+{% extends 'MainBundle::base.html.twig' %}
 
 {% block content %}
     {{ parent() }}
-    Hello World!
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Новости
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    {% for model in models %}
+                        {{ include('MainBundle:Default:_index_news_item.html.twig', {'model': model})}}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

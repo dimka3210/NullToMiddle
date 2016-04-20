@@ -2,25 +2,18 @@
 
 namespace MainBundle\Controller;
 
-use MainBundle\Entity\User;
+use MainBundle\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $user = new User();
-        $user->setEmail('test@test.ru');
-        $plainPassword = '123456';
-        $encoder = $this->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
+        /** @var PostRepository $manager */
+        $repository = $this->getDoctrine()->getRepository('MainBundle:Post');
+        $models = $repository->findBy([], ['dateCreated' => 'DESC'], 20);
 
-//        $manager = $this->getDoctrine()->getManager();
-//        $manager->persist($user);
-//        $manager->flush();
-
-        return $this->render('MainBundle:Default:index.html.twig');
+        return $this->render('MainBundle:Default:index.html.twig', ['models' => $models]);
     }
 
     public function loginAction()
